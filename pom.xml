@@ -186,5 +186,6 @@
     <module>forpink-payment</module>
     <module>forpink-gateway</module>
     <module>forpink-framework</module>
+    <module>forpink-utils</module>
   </modules>
 </project>

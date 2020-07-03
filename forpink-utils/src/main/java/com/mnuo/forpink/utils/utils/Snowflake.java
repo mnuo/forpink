@@ -1,4 +1,4 @@
-package com.mnuo.forpink.seckill.common.utils;
+package com.mnuo.forpink.utils.utils;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;

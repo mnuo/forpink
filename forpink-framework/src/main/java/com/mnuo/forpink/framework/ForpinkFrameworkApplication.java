@@ -3,15 +3,13 @@ package com.mnuo.forpink.framework;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * Hello world!
  *
  */
 @SpringBootApplication
-public class FropinkFrameworkApplication {
+public class ForpinkFrameworkApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(FropinkFrameworkApplication.class, args);
+		SpringApplication.run(ForpinkFrameworkApplication.class, args);
 	}
 }

@@ -1,4 +1,4 @@
-package com.mnuo.forpink.seckill.common.utils;
+package com.mnuo.forpink.framework.utils;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -134,10 +134,5 @@ public class Snowflake {
         Snowflake idWorker = new Snowflake(0, 0);
         long id = idWorker.nextId();
         System.out.println(id);
-    }
-    public static long getId() {
-        Snowflake idWorker = new Snowflake(0, 0);
-        long id = idWorker.nextId();
-        return id;
     }
 }
