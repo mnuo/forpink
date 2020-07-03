@@ -1,0 +1,94 @@
+## 数据源配置
+spring:
+   datasource:
+      url: jdbc:mysql://localhost:3306/pink?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+      username: root
+      password: root123
+      driver-class-name: com.mysql.jdbc.Driver8
+# JPA配置
+   jpa:
+      database-platform: org.hibernate.dialect.MySQL5Dialect # mysql5.5版本使用 版本以上使用:org.hibernate.dialect.MySQLDialect
+      show-sql: true   # 运行时输出jpa执行的sql语句
+      hibernate:
+         ddl-auto: update
+   jackson:
+       time-zone: GMT+8
+   application:
+      name: forpink
+   cloud:
+      nacos:
+         discovery:
+            server-addr: 47.99.209.72:884
+      
+#freemarker(用于商品静态页生成简化版)
+   freemarker: 
+      template-loader-path: classpath:/static/template/
+      suffix: .flt
+      enabled: true
+      cache: false
+      charset: UTF-8
+      content-type: text/html
+      allow-request-override: false
+      check-template-location: true
+      expose-request-attributes: false
+      expose-session-attributes: false
+      expose-spring-macro-helpers: false
+      #商品静态页(自定义映射路径)
+      html: 
+         path: F:/mon/workspaces/forpink/forpink-seckill/src/main/resources/templates/
+   thymeleaf:
+      prefix: classpath:/templates/
+   # 静态文件请求匹配方式
+   mvc:
+     # static-path-pattern: classpath:/static/
+      view:
+         suffix: .html
+   resources:
+      static-locations: classpath:/templates/,classpath:/static/
+      
+# Redis
+# 数据库索引（默认为0）
+   redis:
+      database: 0  
+      host: 127.0.0.1
+      # 服务器连接端口
+      port: 6379
+      # 服务器连接密码（默认为空）如果有变更为自己的
+      password:
+      # 连接池最大连接数（使用负值表示没有限制）
+      pool:
+         max-active: 8
+         # 连接池最大阻塞等待时间（使用负值表示没有限制）
+         max-wait: -1  
+         # 连接池中的最大空闲连接
+         max-idle: 8  
+         # 连接池中的最小空闲连接
+         min-idle: 0  
+      # 连接超时时间（毫秒）
+      timeout: 30000 
+
+   session:
+      store-type: redis
+redisson:
+   address: redis://127.0.0.1:6379
+   password:
+   
+#zookeeper.address
+zookeeper:
+   address: 127.0.0.1:2181
+      
+logging:
+  level:
+    com.springboot.cloud: debug
+    java.sql.PreparedStatement: debug
+  path: logs/
+  file:
+    max-size: 1GB
+    
+server:
+   port: 8080
+   servlet:
+      session: 
+         timeout: 30
+      context-path: /forpink
+   

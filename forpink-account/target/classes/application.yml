@@ -1,0 +1,13 @@
+spring:
+   profiles:
+     active: dev
+server:
+   port: 8093
+feign:
+  sentinel:
+    enabled: true
+  client:
+    config:
+      default:         #default默认所有服务的超时时间
+        connect-timeout: 10000
+        read-timeout: 20000
