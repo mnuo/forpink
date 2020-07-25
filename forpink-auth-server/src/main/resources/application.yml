@@ -1,0 +1,31 @@
+auth-server-url: http://localhost:8080
+
+server:
+   port: 9401
+security:
+   oauth2:
+      client:
+         client_id: client1
+         client_secret: 123456
+         scope: test
+         access-token-uri: ${auth-server-url}/oauth/token
+         user-authorization-url: ${auth-server-url}/oauth/authorize
+      resource:
+         token-info-url: ${auth-server-url}/oauth/check_token
+## 数据源配置
+spring:
+   datasource:
+      url: jdbc:mysql://localhost:3306/pink?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8
+      username: root
+      password: root123
+      driver-class-name: com.mysql.jdbc.Driver
+# JPA配置
+   jpa:
+      database-platform: org.hibernate.dialect.MySQL5Dialect # mysql5.5版本使用 版本以上使用:org.hibernate.dialect.MySQLDialect
+      show-sql: true   # 运行时输出jpa执行的sql语句
+      hibernate:
+         ddl-auto: update
+   jackson:
+       time-zone: GMT+8
+   application:
+      name: auth-service 

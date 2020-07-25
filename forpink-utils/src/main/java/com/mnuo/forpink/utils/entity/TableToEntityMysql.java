@@ -16,11 +16,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.NamedQuery;
-
-import com.mnuo.forpink.utils.entity.ColumnAttribute;
-import com.mnuo.forpink.utils.entity.ColumnMapAttribute;
-import com.mnuo.forpink.utils.entity.TableEntity;
 import com.mnuo.forpink.utils.utils.Snowflake;
 
 public class TableToEntityMysql {

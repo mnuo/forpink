@@ -187,5 +187,7 @@
     <module>forpink-gateway</module>
     <module>forpink-framework</module>
     <module>forpink-utils</module>
+    <module>forpink-auth</module>
+    <module>forpink-auth-server</module>
   </modules>
 </project>

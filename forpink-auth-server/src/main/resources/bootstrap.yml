@@ -1,0 +1,11 @@
+spring:
+   application:
+      name: auth2-service
+   profiles:
+     active: dev
+   cloud:
+      nacos:
+         config:
+            server-addr: 10.0.64.5:8848
+         discovery:
+            server-addr: 10.0.64.5:8848

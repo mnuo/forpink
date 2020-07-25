@@ -18,6 +18,7 @@ public class UserRole implements java.io.Serializable{
     private static final long serialVersionUID = -6684736658849398784L;
 
     /** 用户与角色关系id */
+    @Id
     @Column(name ="id")
     private Long id;
 
