@@ -16,36 +16,41 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.util.StringUtils;
+
 import com.mnuo.forpink.utils.utils.Snowflake;
 
 public class TableToEntityMysql {
 
     /** 数据库连接URL*/ 
-    private final static String DB_URL = "jdbc:mysql://localhost:3306/pink?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8";
+//    private final static String DB_URL = "jdbc:mysql://localhost:3306/pink?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8";
+    private final static String DB_URL = "jdbc:mysql://192.168.68.204:3306/fell?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&autoReconnect=true&failOverReadOnly=false&useSSL=false";
 
     /** 数据库连接驱动*/ 
     private final static String DB_DRIVER = "com.mysql.jdbc.Driver"; 
 
     /** 数据库用户名*/ 
-    private final static String DB_USERNAME = "root";
+//    private final static String DB_USERNAME = "root";
+    private final static String DB_USERNAME = "sit";
 
     /** 数据库密码*/ 
-    private final static String DB_PASSWORD = "root123";
+//    private final static String DB_PASSWORD = "root123";
+    private final static String DB_PASSWORD = "abc-123";
 
     /** 生成java实体类存放目录*/
-    private final static String FILEDIR = "D:\\beans_sharding_jdbc";
+    private final static String FILEDIR = "D:\\beans_sharding_jdbc1-20200818";
 
 
     /**
      * 生成bean前需修改的值
      */
     /**数据库名称**/
-    public static String db_name="pink";
+    public static String db_name="fell";
     /**要生成bean的表名**/
     public static String table_name="users";
     /**生成的bean类package值**/
-    public static String java_package_path="com.mnuo.forpink.framework.module";
-    public static String java_package_path_respository="com.mnuo.forpink.framework.respository";
+    public static String java_package_path="com.hwagain.fell.cp.entity";
+    public static String java_package_path_respository="com.hwagain.fell.cp.respository";
 
 
 
@@ -63,11 +68,9 @@ public class TableToEntityMysql {
 //       * 批量表生成bean
 //       */
         String[] tableArr={
-                "permission_info",
-              "role_info",
-              "role_permission",
-                "user_role",
-                "users"
+                "cp_mac_wait_cert",
+                "cp_worker_wait_cert",
+              "cp_worker_wait_cert_item"
         };
         exportBeansBatch(tableArr);
     }
@@ -126,11 +129,16 @@ public class TableToEntityMysql {
             buffer.append("import javax.persistence.NamedQuery;\n");
             buffer.append("import javax.persistence.Table;\n");
             buffer.append("import java.util.Date;\n");
-            buffer.append("\nimport lombok.Data;\n");
+            buffer.append("\nimport io.swagger.annotations.ApiModelProperty;\n");
+            buffer.append("\nimport lombok.AllArgsConstructor;\n");
+            buffer.append("import lombok.NoArgsConstructor;\n");
+            buffer.append("import lombok.Data;\n");
 
-            buffer.append("\n@Entity\n");
-            buffer.append("@Data\n");
-            buffer.append("@Table(name =\" "+tableName+"\")\n");
+            buffer.append("\n@Data\n");
+            buffer.append("@Entity\n");
+            buffer.append("@NoArgsConstructor\n");
+            buffer.append("@AllArgsConstructor\n");
+            buffer.append("@Table(name =\""+tableName+"\")\n");
             buffer.append("@NamedQuery(name=\""+boName+".findAll\", query=\"SELECT s FROM "+boName+" s\")\n");
             buffer.append("public class "+boName+" implements java.io.Serializable{\n");
 
@@ -343,7 +351,10 @@ public class TableToEntityMysql {
             if(paimaryIdName!=null && paimaryIdName.equals(columnAttribute.getAttributeName())){
                 parimaryIdType=columnAttribute.getAttributeType();
             }
-            writer.append("    /** "+columnAttribute.getComment()+" */\n");
+            if(!StringUtils.isEmpty(columnAttribute.getComment())){
+            	writer.append("    @ApiModelProperty(value = \""+columnAttribute.getComment()+" \")\n");
+            }
+//            writer.append("    /** "+columnAttribute.getComment()+" */\n");
 //            ColumnAttribute columnAttribute=(ColumnAttribute)columnAttributes.get(i);
             if(columnAttribute.isPK()){
                 writer.append("    @Id\n");
