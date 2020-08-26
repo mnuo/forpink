@@ -38,7 +38,7 @@ public class TableToEntityMysql {
     private final static String DB_PASSWORD = "abc-123";
 
     /** 生成java实体类存放目录*/
-    private final static String FILEDIR = "D:\\beans_sharding_jdbc1-20200818";
+    private final static String FILEDIR = "D:\\aaaaaaa-20200819-2";
 
 
     /**
@@ -49,8 +49,8 @@ public class TableToEntityMysql {
     /**要生成bean的表名**/
     public static String table_name="users";
     /**生成的bean类package值**/
-    public static String java_package_path="com.hwagain.fell.cp.entity";
-    public static String java_package_path_respository="com.hwagain.fell.cp.respository";
+    public static String java_package_path="com.hwagain.fell.co.entity";
+    public static String java_package_path_respository="com.hwagain.fell.co.respository";
 
 
 
@@ -358,7 +358,7 @@ public class TableToEntityMysql {
 //            ColumnAttribute columnAttribute=(ColumnAttribute)columnAttributes.get(i);
             if(columnAttribute.isPK()){
                 writer.append("    @Id\n");
-                writer.append("    @GeneratedValue(strategy = IDENTITY)\n");
+                writer.append("    @GeneratedValue\n");
                 writer.append("    @Column(name = \"id\", unique = true, nullable = false)\n");
             }else{
                 writer.append("    @Column(name =\""+((ColumnAttribute)columnAttributes.get(i)).getColumnName()+"\")\n");
