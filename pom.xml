@@ -189,5 +189,6 @@
     <module>forpink-utils</module>
     <module>forpink-auth</module>
     <module>forpink-auth-server</module>
+    <module>forpink-job</module>
   </modules>
 </project>
