@@ -1,5 +1,8 @@
 package com.mnuo.forpink.utils.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class  ColumnAttribute {
     //字段名称
     private String columnName;
@@ -81,5 +84,14 @@ public class  ColumnAttribute {
     public void setComment(String comment) {
         this.comment = comment;
     }
-
+    public static void main(String[] args) {
+		List<String> list = new ArrayList<>();
+		list.add("a");
+		list.add("b");
+		int i = 0;
+		for (String string : list) {
+			System.out.println(string);
+			list.add(string+(i ++));
+		}
+	}
 }

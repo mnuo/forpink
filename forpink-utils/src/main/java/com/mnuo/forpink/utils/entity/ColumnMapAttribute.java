@@ -120,12 +120,14 @@ public class ColumnMapAttribute {
         }else if("timestamp".equalsIgnoreCase(columnType)){
             attributeType="Date";
         }else if("decimal".equalsIgnoreCase(columnType)){
-            attributeType="Double";
+            attributeType="BigDecimal";
         }else if("datetime".equalsIgnoreCase(columnType)){
             attributeType="Date";
         }else if("boolean".equalsIgnoreCase(columnType)){
             attributeType="Boolean";
         }else if("double".equalsIgnoreCase(columnType)){
+            attributeType="Double";
+        }else if("float".equalsIgnoreCase(columnType)){
             attributeType="Double";
         }
         return attributeType;
