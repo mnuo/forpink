@@ -58,7 +58,9 @@ logging:
   config: src/main/resources/logback.xml
 service:
    ignore:
-      path: 
-         - /oauth/*
-         - /auth/user/login
+      resources: 
+         - /app/user
+         - /android/**
+         - /ios/**
+         
   

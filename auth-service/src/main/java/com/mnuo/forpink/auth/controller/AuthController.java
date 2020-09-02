@@ -1,4 +1,4 @@
-package com.mnuo.forpink.auth.Controller;
+package com.mnuo.forpink.auth.controller;
 
 import javax.validation.Valid;
 

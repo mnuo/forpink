@@ -31,16 +31,15 @@ import lombok.extern.slf4j.Slf4j;
  * oauth2服务器配置
  * @author administrator
  */
-@Configuration
-@Slf4j
+//@Configuration
+//@Slf4j
 public class Auth2Config {
 	public static final String ROLE_ADMIN = "ADMIN";
 	//访问客户端秘钥
 	public static final String CLIENT_SECRET = "123456";
 	
 	public static final String CLIENT_ID = "client_1";
-	@Value("${system.params.appaddress}")
-	public static final String[] IGNORE_RESOURES = {"/oauth/*", "/auth/user/login"};
+	public static final String[] IGNORE_RESOURES = {"/META-INF/resources", "/webjars/**","doc.html", "swagger-ui.html","/META-INF/resources/webjars/", "/oauth/*", "/auth/user/login"};
 	
 	//鉴权模式
 	public static final String GRANT_TYPE[] = {"password", "refresh_token"}; 
@@ -49,8 +48,8 @@ public class Auth2Config {
 	 * 资源服务器
 	 * @author administrator
 	 */
-	@Configuration
-	@EnableResourceServer
+//	@Configuration
+//	@EnableResourceServer
 	protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter{
 		@Autowired
 		private CustomAuthExceptionHandler customAuthExceptionHandler;
@@ -68,7 +67,7 @@ public class Auth2Config {
 				//请求权限配置
 				.authorizeRequests()
 				//下面的路径放行, 不需要经过认证
-				.antMatchers(IGNORE_RESOURES).permitAll()
+				.antMatchers("/META-INF/resources", "/webjars/**","doc.html", "swagger-ui.html","/META-INF/resources/webjars/", "/oauth/*", "/auth/user/login").permitAll()
 				//Option请求不需要鉴权
 				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 				//用户的增删改查接口只允许管理员访问
@@ -87,8 +86,8 @@ public class Auth2Config {
 	 * 权限认证授权服务器
 	 * @author administrator
 	 */
-	@Configuration
-	@EnableAuthorizationServer
+//	@Configuration
+//	@EnableAuthorizationServer
 	protected static class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter{
 		@Autowired
 		private AuthenticationManager authenticationManager;
