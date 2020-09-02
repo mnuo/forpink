@@ -13,6 +13,10 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 
 import com.mnuo.forpink.auth.handler.CustomAuthExceptionHandler;
 
+/**
+ * 资源服务器
+ * @author administrator
+ */
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter{

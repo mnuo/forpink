@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -34,12 +37,16 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Configuration
 @Slf4j
+@EnableWebSecurity
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
-	private UsersRespository usersRespository;
+	UsersRespository usersRespository;
 	@Autowired
 	RoleInfoRespository roleInfoRespository;
+	@Autowired
+	UserDetailsService userDetailsService;
 	
 //	@Autowired
 //	private RestTemplate restTemplate;
@@ -50,32 +57,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		return super.authenticationManagerBean();
 	}
 	
+//	@Override
+//	protected UserDetailsService userDetailsService() {
+//		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+//		return new UserDetailsService() {
+//			
+//			@Override
+//			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//				log.info("username: {}", username);
+//				Users user = usersRespository.findByUserName(username);
+//				if(user != null){
+//					CustomUserDetail detail = new CustomUserDetail();
+//					detail.setUsername(username);
+//					detail.setPassword("{bcrypt}"+bCryptPasswordEncoder.encode(user.getPassWord()));
+//					
+//					List<RoleInfo> roles = roleInfoRespository.findRolesByUser(user.getId());
+//					if(!CollectionUtils.isEmpty(roles)){
+//						List<String> roleNames = roles.stream().map(RoleInfo::getCode).collect(Collectors.toList());
+//						String[] role = (String[]) roleNames.toArray();
+//						List<GrantedAuthority> list = AuthorityUtils.createAuthorityList(role);
+//						detail.setAuthorities(list);
+//					}
+//					return detail;
+//				}
+//				return null;
+//			}
+//		};
+//	}
 	@Override
-	protected UserDetailsService userDetailsService() {
-		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-		return new UserDetailsService() {
-			
-			@Override
-			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-				log.info("username: {}", username);
-				Users user = usersRespository.findByUserName(username);
-				if(user != null){
-					CustomUserDetail detail = new CustomUserDetail();
-					detail.setUsername(username);
-					detail.setPassword("{bcrypt}"+bCryptPasswordEncoder.encode(user.getPassWord()));
-					
-					List<RoleInfo> roles = roleInfoRespository.findRolesByUser(user.getId());
-					if(!CollectionUtils.isEmpty(roles)){
-						List<String> roleNames = roles.stream().map(RoleInfo::getCode).collect(Collectors.toList());
-						String[] role = (String[]) roleNames.toArray();
-						List<GrantedAuthority> list = AuthorityUtils.createAuthorityList(role);
-						detail.setAuthorities(list);
-					}
-					return detail;
-				}
-				return null;
-			}
-		};
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService)
+			.passwordEncoder(passwordEncoder());
 	}
 	@Bean
 	PasswordEncoder passwordEncoder(){

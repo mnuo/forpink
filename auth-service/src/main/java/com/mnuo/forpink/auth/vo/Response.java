@@ -47,8 +47,8 @@ public class Response implements Serializable {
         this.message = msg;
     }
 
-    public Response(Integer code, String msg, Object data) {
-        this.code = code;
+    public Response(ResponseType error, String msg, Object data) {
+        this.code = error.getCode();
         this.message = msg;
         this.data = data;
     }
@@ -109,7 +109,7 @@ public class Response implements Serializable {
     }
 
 	public static Response error(String message) {
-		 return new Response(ResponseType.ERROR, message);
+		 return new Response(ResponseType.ERROR, message, null);
 	}
 
 }

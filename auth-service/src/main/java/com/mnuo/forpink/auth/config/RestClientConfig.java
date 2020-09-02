@@ -35,8 +35,8 @@ public class RestClientConfig {
     @Bean
     public RestTemplate restTemplate() {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.setRequestFactory(clientHttpRequestFactory());
-        restTemplate.setErrorHandler(new DefaultResponseErrorHandler());
+//        restTemplate.setRequestFactory(clientHttpRequestFactory());
+//        restTemplate.setErrorHandler(new DefaultResponseErrorHandler());
         return restTemplate;
     }
     @Bean

@@ -38,7 +38,7 @@ public class TableToEntityMysql {
     private final static String DB_PASSWORD = "abc-123";
 
     /** 生成java实体类存放目录*/
-    private final static String FILEDIR = "D:\\aaaaaaa-20200819-2";
+    private final static String FILEDIR = "D:\\aaaaaaa-20200819-3";
 
 
     /**
@@ -49,8 +49,8 @@ public class TableToEntityMysql {
     /**要生成bean的表名**/
     public static String table_name="users";
     /**生成的bean类package值**/
-    public static String java_package_path="com.hwagain.fell.co.entity";
-    public static String java_package_path_respository="com.hwagain.fell.co.respository";
+    public static String java_package_path="com.hwagain.fell.base.entity";
+    public static String java_package_path_respository="com.hwagain.fell.base.respository";
 
 
 

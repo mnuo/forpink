@@ -1,3 +1,6 @@
+server:
+  port: 8080
+  host: localhost
 swagger:
   open: true
 ## 数据源配置
@@ -57,10 +60,16 @@ spring:
 logging:
   config: src/main/resources/logback.xml
 service:
+   client:
+      clientSecret: 123123
+      clientId: client_1
+      grantType:
+         - password
+         - refresh_token
    ignore:
       resources: 
          - /app/user
-         - /android/**
-         - /ios/**
+         - /oauth/*
+         - /auth/user/login
          
   

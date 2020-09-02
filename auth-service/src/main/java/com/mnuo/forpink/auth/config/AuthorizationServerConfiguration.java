@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -15,13 +16,18 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
-
+/**
+ * 权限认证授权服务器
+ * @author administrator
+ */
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter{
 	//访问客户端秘钥
-	public static final String CLIENT_SECRET = "123456";
-	public static final String CLIENT_ID = "client_1";
+//	public static final String CLIENT_SECRET = "123456";
+//	public static final String CLIENT_ID = "client_1";
+	@Autowired
+	ClientEncodeConfig clientEncodeConfig;
 	//鉴权模式
 	public static final String GRANT_TYPE[] = {"password", "refresh_token"}; 
 		
@@ -32,14 +38,17 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	@Autowired
 	private RedisConnectionFactory connectionFactory;
 	
+	@Autowired
+	UserDetailsService userDetailsService;
+	
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		String finalSecret = "{bcrypt}" + new BCryptPasswordEncoder().encode(CLIENT_SECRET);
+		String finalSecret = "{bcrypt}" + new BCryptPasswordEncoder().encode(clientEncodeConfig.getClientSecret());
 		//配置客户端, 使用密码模式验证鉴权
 		clients.inMemory()
-			.withClient(CLIENT_ID)
+			.withClient(clientEncodeConfig.getClientId())
 			//密码模式和刷新token模式
-			.authorizedGrantTypes(GRANT_TYPE)
+			.authorizedGrantTypes(clientEncodeConfig.getGrantType())
 			.scopes("all")
 			.secret(finalSecret);
 
@@ -71,6 +80,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 		tokenServices.setRefreshTokenValiditySeconds((int) TimeUnit.HOURS.toSeconds(1));
 		tokenServices.setReuseRefreshToken(false);
 		endpoints.tokenServices(tokenServices);
+		endpoints.userDetailsService(userDetailsService);
 	}
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {

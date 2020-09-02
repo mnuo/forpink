@@ -15,6 +15,6 @@ public class ExceptionHandle {
     @ResponseBody
     public Response handle(Exception e) {
     	log.error("系统内部错误:", e);
-       return Response.error("系统内部错误" + e.getMessage());
+       return Response.error(e.getMessage());
     }
 }
