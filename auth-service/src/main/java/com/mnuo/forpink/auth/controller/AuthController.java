@@ -85,6 +85,10 @@ public class AuthController {
     public Response findAllUser(){
         return userService.findAllUserVO();
     }
+    @GetMapping("test")
+    public Response test(){
+    	return Response.success();
+    }
 
     /**
      * @description 用户登录

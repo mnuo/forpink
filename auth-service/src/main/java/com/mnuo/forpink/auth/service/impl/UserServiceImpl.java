@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -44,6 +45,9 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	ServerConfig serverConfig;
 	
+	@Value("${server.servlet.context-path}")
+	String serviceName;
+	
 	@Override
 	public void addUser(@Valid Users userDTO) {
 		
@@ -82,7 +86,7 @@ public class UserServiceImpl implements UserService{
             //因为oauth2本身自带的登录接口是"/oauth/token"，并且返回的数据类型不能按我们想要的去返回
             //但是我的业务需求是，登录接口是"user/login"，由于我没研究过要怎么去修改oauth2内部的endpoint配置
             //所以这里我用restTemplate(HTTP客户端)进行一次转发到oauth2内部的登录接口，比较简单粗暴
-        	token = restTemplate.postForObject(serverConfig.getUrl()+UrlConstant.LOGIN_URL.getUrl(), params, Token.class);
+        	token = restTemplate.postForObject(serverConfig.getUrl() + "/" + serviceName + UrlConstant.LOGIN_URL.getUrl(), params, Token.class);
         	LoginUserVO loginUserVo = redisUtil.get(token.getValue(), LoginUserVO.class);
         	if(loginUserVo != null){
         		//登录的时候，判断该用户是否已经登录过了
@@ -130,7 +134,7 @@ public class UserServiceImpl implements UserService{
        
         Token token = null;
         try {
-            token = restTemplate.postForObject(serverConfig.getUrl()+UrlConstant.LOGIN_URL.getUrl(), params, Token.class);
+            token = restTemplate.postForObject(serverConfig.getUrl() + "/" + serviceName + UrlConstant.LOGIN_URL.getUrl(), params, Token.class);
         } catch (RestClientException e) {
             try {
             	log.error("oauthRefreshToken error: ", e);

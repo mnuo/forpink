@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name =" role_permission")
+@Table(name ="role_permission")
 @NamedQuery(name="RolePermission.findAll", query="SELECT s FROM RolePermission s")
 public class RolePermission implements java.io.Serializable{
     private static final long serialVersionUID = -6684736658736152576L;

@@ -13,4 +13,9 @@ public interface RoleInfoRespository extends JpaRepository<RoleInfo,Long>, JpaSp
 
 	@Query(" select r from RoleInfo r, UserRole u where r.id=u.roleId and u.id=:id ")
 	List<RoleInfo> findRolesByUser(@Param("id") Long id);
+	
+	@Query(" select r from RoleInfo r, RolePermission rp, PermissionInfo p "
+			+ " where r.id=rp.roleId and rp.permissionId=p.id "
+			+ " 	and p.path=:url ")
+	List<RoleInfo> findRolesByPermission(@Param("url") String url);
 }
