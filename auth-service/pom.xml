@@ -16,33 +16,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
-   <!--web依赖-->
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
 		
-		<!--redis依赖-->
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-data-redis</artifactId>
-		</dependency>
-		 <!-- Spring Boot JPA 依赖 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <!--数据库-->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.1.9</version>
-        </dependency>
-        <!--数据库-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
@@ -59,6 +33,16 @@
 		    <groupId>org.springframework.security.oauth</groupId>
 		    <artifactId>spring-security-oauth2</artifactId>
 		    <version>2.3.3.RELEASE</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.mnuo</groupId>
+			  <artifactId>forpink-core</artifactId>
+			  <version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+		     <groupId>com.mnuo</groupId>
+			<artifactId>forpink-web-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
   </dependencies>

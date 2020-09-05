@@ -181,16 +181,19 @@
         </plugins>
     </build>
 	<modules>
-	  <module>forpink-seckill</module>
-	  <module>forpink-account</module>
-    <module>forpink-payment</module>
-    <module>forpink-gateway</module>
-    <module>forpink-framework</module>
-    <module>forpink-utils</module>
-    <module>forpink-auth</module>
-    <module>forpink-auth-server</module>
-    <module>forpink-job</module>
-    <module>forpink-auth-service</module>
-    <module>auth-service</module>
-  </modules>
+	   <!-- <module>forpink-seckill</module>
+	   <module>forpink-account</module>
+	    <module>forpink-payment</module>
+	    <module>forpink-gateway</module>
+	    <module>forpink-framework</module>
+	    <module>forpink-utils</module>
+	    <module>forpink-auth</module>
+	    <module>forpink-auth-server</module>
+	    <module>forpink-job</module>
+	    <module>forpink-auth-service</module> -->
+	    <module>forpink-core</module>
+	    <module>forpink-web-common</module>
+	    <module>auth-service</module>
+	    <module>sso-service</module>
+	</modules>
 </project>

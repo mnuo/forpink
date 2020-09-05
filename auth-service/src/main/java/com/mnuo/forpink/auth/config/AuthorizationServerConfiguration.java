@@ -16,6 +16,8 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
+
+import com.mnuo.forpink.core.config.ClientEncodeConfig;
 /**
  * 权限认证授权服务器
  * @author administrator
@@ -75,9 +77,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 		tokenServices.setClientDetailsService(endpoints.getClientDetailsService());
 		tokenServices.setTokenEnhancer(endpoints.getTokenEnhancer());
 		//1小时
-		tokenServices.setAccessTokenValiditySeconds((int) TimeUnit.HOURS.toSeconds(1));
+		tokenServices.setAccessTokenValiditySeconds((int) TimeUnit.HOURS.toSeconds(24));
 		//1小时
-		tokenServices.setRefreshTokenValiditySeconds((int) TimeUnit.HOURS.toSeconds(1));
+		tokenServices.setRefreshTokenValiditySeconds((int) TimeUnit.HOURS.toSeconds(24));
 		tokenServices.setReuseRefreshToken(false);
 		endpoints.tokenServices(tokenServices);
 		endpoints.userDetailsService(userDetailsService);

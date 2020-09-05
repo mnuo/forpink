@@ -14,8 +14,8 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSON;
-import com.mnuo.forpink.auth.common.ResponseType;
-import com.mnuo.forpink.auth.vo.Response;
+import com.mnuo.forpink.web.common.ResponseType;
+import com.mnuo.forpink.web.vo.Response;
 
 import lombok.extern.slf4j.Slf4j;
 /**

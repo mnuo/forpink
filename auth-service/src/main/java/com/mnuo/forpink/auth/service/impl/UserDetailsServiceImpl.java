@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import com.mnuo.forpink.auth.domain.CustomUserDetail;
-import com.mnuo.forpink.auth.module.RoleInfo;
-import com.mnuo.forpink.auth.module.Users;
-import com.mnuo.forpink.auth.respository.RoleInfoRespository;
-import com.mnuo.forpink.auth.respository.UsersRespository;
+import com.mnuo.forpink.core.module.RoleInfo;
+import com.mnuo.forpink.core.module.Users;
+import com.mnuo.forpink.core.respository.RoleInfoRespository;
+import com.mnuo.forpink.core.respository.UsersRespository;
 
 import lombok.extern.slf4j.Slf4j;
 
