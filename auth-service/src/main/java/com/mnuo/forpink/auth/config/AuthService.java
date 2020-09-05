@@ -33,15 +33,9 @@ public class AuthService {
 	@Autowired
 	PermissionInfoRespository permissionInfoRespository;
 	
-	@Value("${server.servlet.context-path}")
-	String serverName;
-	
 	public boolean canAccess(HttpServletRequest request, Authentication authentication){
-		String uri = request.getRequestURI();
+		String uri = request.getServletPath();
 		log.info("uri: " + uri);
-		if(!StringUtils.isEmpty(serverName)){
-			uri = uri.replace("/" + serverName, "");
-		}
 		List<RoleInfo> roles = getRolesForResources(uri);
 		if(!CollectionUtils.isEmpty(roles)){
 			for (RoleInfo role : roles) {
