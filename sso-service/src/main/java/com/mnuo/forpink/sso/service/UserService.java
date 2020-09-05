@@ -1,5 +1,7 @@
 package com.mnuo.forpink.sso.service;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import com.mnuo.forpink.core.module.Users;
@@ -10,11 +12,11 @@ public interface UserService {
 
 	void addUser(@Valid Users userDTO);
 
-	void deleteUser(Integer id);
+	void deleteUser(Long id);
 
 	void updateUser(@Valid Users userDTO);
 
-	Response findAllUserVO();
+	List<Users> findAllUserVO();
 
 	Response login(LoginUserDto loginUserDTO);
 

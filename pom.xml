@@ -193,7 +193,7 @@
 	    <module>forpink-auth-service</module> -->
 	    <module>forpink-core</module>
 	    <module>forpink-web-common</module>
-	    <module>auth-service</module>
-	    <module>sso-service</module>
+	    <!-- <module>auth-service</module>
+	    <module>sso-service</module> -->
 	</modules>
 </project>

@@ -1,4 +1,4 @@
-package com.mnuo.forpink.auth.config;
+package com.mnuo.forpink.core.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

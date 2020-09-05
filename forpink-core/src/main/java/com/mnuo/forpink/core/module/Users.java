@@ -37,7 +37,7 @@ public class Users implements java.io.Serializable{
 
     /** 手机号 */
     @Column(name ="mobile")
-    private Integer mobile;
+    private String mobile;
 
     /** 邮箱 */
     @Column(name ="email")

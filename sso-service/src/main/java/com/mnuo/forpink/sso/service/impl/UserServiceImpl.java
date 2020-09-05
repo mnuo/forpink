@@ -1,5 +1,6 @@
 package com.mnuo.forpink.sso.service.impl;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.validation.Valid;
@@ -19,6 +20,7 @@ import com.mnuo.forpink.core.module.Users;
 import com.mnuo.forpink.core.respository.UsersRespository;
 import com.mnuo.forpink.core.utils.Assert;
 import com.mnuo.forpink.core.utils.BeanUtils;
+import com.mnuo.forpink.core.utils.IdWorker;
 import com.mnuo.forpink.core.utils.RedisUtil;
 import com.mnuo.forpink.sso.domain.Token;
 import com.mnuo.forpink.sso.dto.LoginUserDto;
@@ -50,26 +52,24 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public void addUser(@Valid Users userDTO) {
-		
-		
+		userDTO.setId(IdWorker.getId());
+		usersRespository.save(userDTO);
 	}
 
 	@Override
-	public void deleteUser(Integer id) {
-		// TODO Auto-generated method stub
-		
+	public void deleteUser(Long id) {
+		usersRespository.deleteById(id);
 	}
 
 	@Override
 	public void updateUser(@Valid Users userDTO) {
-		// TODO Auto-generated method stub
-		
+		usersRespository.saveAndFlush(userDTO);
 	}
 
 	@Override
-	public Response findAllUserVO() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Users> findAllUserVO() {
+		List<Users> users = usersRespository.findAll();
+		return users;
 	}
 
 	@Override
@@ -86,7 +86,8 @@ public class UserServiceImpl implements UserService{
             //因为oauth2本身自带的登录接口是"/oauth/token"，并且返回的数据类型不能按我们想要的去返回
             //但是我的业务需求是，登录接口是"user/login"，由于我没研究过要怎么去修改oauth2内部的endpoint配置
             //所以这里我用restTemplate(HTTP客户端)进行一次转发到oauth2内部的登录接口，比较简单粗暴
-        	token = restTemplate.postForObject(serverConfig.getUrl() + "/" + serviceName + UrlConstant.LOGIN_URL.getUrl(), params, Token.class);
+//        	token = restTemplate.postForObject(serverConfig.getUrl() + "/" + serviceName + UrlConstant.LOGIN_URL.getUrl(), params, Token.class);
+        	token = restTemplate.postForObject("http://localhost:8080/auth-service" + UrlConstant.LOGIN_URL.getUrl(), params, Token.class);
         	LoginUserVO loginUserVo = redisUtil.get(token.getValue(), LoginUserVO.class);
         	if(loginUserVo != null){
         		//登录的时候，判断该用户是否已经登录过了
@@ -100,7 +101,7 @@ public class UserServiceImpl implements UserService{
         	//这里我拿到了登录成功后返回的token信息之后，我再进行一层封装，最后返回给前端的其实是LoginUserVO
         }catch (Exception e) {
         	log.error(e.getMessage(), e);
-			Assert.throwException("username or password error");
+			Assert.throwException("用户名或者密码错误.");
 		}
         LoginUserVO loginUserVo = new LoginUserVO();
         Users userPO = usersRespository.findByUserName(loginUserDTO.getAccount());
@@ -134,7 +135,8 @@ public class UserServiceImpl implements UserService{
        
         Token token = null;
         try {
-            token = restTemplate.postForObject(serverConfig.getUrl() + "/" + serviceName + UrlConstant.LOGIN_URL.getUrl(), params, Token.class);
+            token = restTemplate.postForObject("http://localhost:8080/auth-service" + UrlConstant.LOGIN_URL.getUrl(), params, Token.class);
+//            token = restTemplate.postForObject(serverConfig.getUrl() + "/" + serviceName + UrlConstant.LOGIN_URL.getUrl(), params, Token.class);
         } catch (RestClientException e) {
             try {
             	log.error("oauthRefreshToken error: ", e);

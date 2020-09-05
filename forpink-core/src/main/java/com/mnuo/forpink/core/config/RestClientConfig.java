@@ -1,4 +1,4 @@
-package com.mnuo.forpink.auth.config;
+package com.mnuo.forpink.core.config;
 
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
