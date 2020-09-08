@@ -57,7 +57,7 @@ public class ForpinkSwaggerConfig implements WebMvcConfigurer{
 
     private ApiInfo apiInfo1() {
         return new ApiInfoBuilder()
-                .title("exampleApi 0.01")
+                .title("example Api 0.01")
                 .termsOfServiceUrl("www.example.com")
                 .contact(new Contact("liumei","http://blog.csdn.net/pc_gad","hilin2333@gmail.com"))
                 .version("v0.01")
