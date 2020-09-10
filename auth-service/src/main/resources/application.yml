@@ -2,7 +2,7 @@ server:
   port: 8080
   host: localhost
   servlet:
-      context-path: /auth-service
+      context-path: /auth
 swagger:
   open: true
 ## 数据源配置
@@ -44,8 +44,6 @@ spring:
          ddl-auto: update
    jackson:
        time-zone: GMT+8
-   application:
-      name: auth-service  
    redis:
       open: true # 是否开启redis缓存  true开启   false关闭
       database: 1

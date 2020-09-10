@@ -7,19 +7,20 @@ spring:
      active: dev
    cloud:
       gateway:
+         default-filters: SwaggerHeaderFilter
          discovery:
             locator:
                lowerCaseServiceId: true
                enabled: true
-           #   predicates:
-           #      - name: Path
-           #        args:
-           #           pattern: "'/api/' + serviceId + '/**'"
-           #   filters:
-           #      - name: RewritePath
-           #        args:
-           #           regexp: "'/api/' + serviceId + '/(?<remaining>.*)'"
-           #           replacement: "'/${remaining}'"
+               predicates:
+                  - name: Path
+                    args:
+                       pattern: "'/api/' + serviceId + '/**'"
+               filters:
+                  - name: RewritePath
+                    args:
+                       regexp: "'/api/' + serviceId + '/(?<remaining>.*)'"
+                       replacement: "serviceId + '/${remaining}'"
          routes: #配置路由路径
            - id: sso-service
              uri: lb://sso-service

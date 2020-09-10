@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mnuo.forpink.core.common.RolePathVO;
 import com.mnuo.forpink.core.module.RoleInfo;
 @Transactional
 public interface RoleInfoRespository extends JpaRepository<RoleInfo,Long>, JpaSpecificationExecutor<RoleInfo>{
