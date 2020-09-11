@@ -2,11 +2,16 @@ package com.mnuo.forpink.auth.domain;
 
 import java.util.List;
 
+import lombok.Builder;
+import lombok.Data;
+
 /**
  * @author Zhifeng.Zeng
  * @description oauth2客户端token参数
  * @date 2019/3/8
  */
+@Builder
+@Data
 public class Token {
 
     /**
@@ -24,7 +29,7 @@ public class Token {
     /**
      * refreshToken对象
      */
-    private RefreshTokenBean refreshToken;
+    private String refreshToken;
 
     /**
      * token类型
@@ -35,66 +40,13 @@ public class Token {
      * access_token值
      */
     private String value;
+    /**
+     * 访问令牌头前缀
+     */
+    private String tokenHead;
 
     /**
      * 使用范围
      */
     private List<String> scope;
-
-
-    public String getExpiration() {
-        return expiration;
-    }
-
-    public void setExpiration(String expiration) {
-        this.expiration = expiration;
-    }
-
-    public boolean isExpired() {
-        return expired;
-    }
-
-    public void setExpired(boolean expired) {
-        this.expired = expired;
-    }
-
-    public int getExpiresIn() {
-        return expiresIn;
-    }
-
-    public void setExpiresIn(int expiresIn) {
-        this.expiresIn = expiresIn;
-    }
-
-    public RefreshTokenBean getRefreshToken() {
-        return refreshToken;
-    }
-
-    public void setRefreshToken(RefreshTokenBean refreshToken) {
-        this.refreshToken = refreshToken;
-    }
-
-    public String getTokenType() {
-        return tokenType;
-    }
-
-    public void setTokenType(String tokenType) {
-        this.tokenType = tokenType;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public List<String> getScope() {
-        return scope;
-    }
-
-    public void setScope(List<String> scope) {
-        this.scope = scope;
-    }
 }

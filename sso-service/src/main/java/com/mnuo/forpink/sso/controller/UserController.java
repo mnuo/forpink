@@ -82,6 +82,17 @@ public class UserController {
     public Response login(LoginUserDto loginUserDto){
         return userService.login(loginUserDto);
     }
+	/**
+	 * @description 用户登录
+	 * @param loginUserDTO
+	 * @return
+	 */
+	@ApiOperation(value="登录")
+	@PostMapping("/login1")
+	public Response login1(LoginUserDto loginUserDto){
+		return userService.login(loginUserDto);
+	}
+	
 
 
 }

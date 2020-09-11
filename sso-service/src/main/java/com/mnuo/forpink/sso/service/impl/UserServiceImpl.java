@@ -3,8 +3,6 @@ package com.mnuo.forpink.sso.service.impl;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -51,7 +49,7 @@ public class UserServiceImpl implements UserService{
 	String serviceName;
 	
 	@Override
-	public void addUser(@Valid Users userDTO) {
+	public void addUser(Users userDTO) {
 		userDTO.setId(IdWorker.getId());
 		usersRespository.save(userDTO);
 	}
@@ -62,7 +60,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void updateUser(@Valid Users userDTO) {
+	public void updateUser(Users userDTO) {
 		usersRespository.saveAndFlush(userDTO);
 	}
 
@@ -87,7 +85,7 @@ public class UserServiceImpl implements UserService{
             //但是我的业务需求是，登录接口是"user/login"，由于我没研究过要怎么去修改oauth2内部的endpoint配置
             //所以这里我用restTemplate(HTTP客户端)进行一次转发到oauth2内部的登录接口，比较简单粗暴
 //        	token = restTemplate.postForObject(serverConfig.getUrl() + "/" + serviceName + UrlConstant.LOGIN_URL.getUrl(), params, Token.class);
-        	token = restTemplate.postForObject("http://localhost:8080/auth-service" + UrlConstant.LOGIN_URL.getUrl(), params, Token.class);
+        	token = restTemplate.postForObject("http://localhost:8080/auth" + UrlConstant.LOGIN_URL.getUrl(), params, Token.class);
         	LoginUserVO loginUserVo = redisUtil.get(token.getValue(), LoginUserVO.class);
         	if(loginUserVo != null){
         		//登录的时候，判断该用户是否已经登录过了
@@ -135,7 +133,7 @@ public class UserServiceImpl implements UserService{
        
         Token token = null;
         try {
-            token = restTemplate.postForObject("http://localhost:8080/auth-service" + UrlConstant.LOGIN_URL.getUrl(), params, Token.class);
+            token = restTemplate.postForObject("http://localhost:8080/auth" + UrlConstant.LOGIN_URL.getUrl(), params, Token.class);
 //            token = restTemplate.postForObject(serverConfig.getUrl() + "/" + serviceName + UrlConstant.LOGIN_URL.getUrl(), params, Token.class);
         } catch (RestClientException e) {
             try {

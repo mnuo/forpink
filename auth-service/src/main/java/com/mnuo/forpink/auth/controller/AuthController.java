@@ -1,88 +1,43 @@
 package com.mnuo.forpink.auth.controller;
 
-import javax.validation.Valid;
+import java.security.Principal;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mnuo.forpink.core.module.Users;
-import com.mnuo.forpink.web.vo.Response;
-
-import lombok.extern.slf4j.Slf4j;
+import com.mnuo.forpink.auth.api.CommonResult;
+import com.mnuo.forpink.auth.domain.Token;
 
 /**
- * @description 用户权限管理
- * @author Zhifeng.Zeng
- * @date 2019/4/19 13:58
+ * 自定义Oauth2获取令牌接口
+ * Created by macro on 2020/7/17.
  */
-@Slf4j
-@Validated
-@RestController
-@RequestMapping("/auth/")
+//@RestController
+//@RequestMapping("/oauth")
 public class AuthController {
 
-//    @Autowired
-//    private UserService userService;
-//
-//    @Autowired
-//    private RoleService roleService;
-
     @Autowired
-    private RedisTokenStore redisTokenStore;
+    private TokenEndpoint tokenEndpoint;
 
     /**
-     * @description 添加用户
-     * @param userDTO
-     * @return
+     * Oauth2登录认证
      */
-    @PostMapping("user")
-    public Response add(@Valid @RequestBody Users userDTO) throws Exception {
-//        userService.addUser(userDTO);
-        return Response.success();
-    }
-
-    /**
-     * @description 删除用户
-     * @param id
-     * @return
-     */
-    @DeleteMapping("user/{id}")
-    public Response deleteUser(@PathVariable("id")Integer id) throws Exception {
-//        userService.deleteUser(id);
-        return Response.success();
-    }
-
-    /**
-     * @descripiton 修改用户
-     * @param userDTO
-     * @return
-     */
-    @PutMapping("user")
-    public Response updateUser(@Valid @RequestBody Users userDTO){
-//        userService.updateUser(userDTO);
-        return Response.success();
-    }
-
-    /**
-     * @description 获取用户列表
-     * @return
-     */
-    @GetMapping("user")
-    public Response findAllUser(){
-//        return userService.findAllUserVO();
-    	return null;
-    }
-    @GetMapping("test")
-    public Response test(){
-    	return Response.success();
-    }
+//    @RequestMapping(value = "/token", method = RequestMethod.POST)
+//    public CommonResult<Token> postAccessToken(Principal principal, @RequestParam Map<String, String> parameters) throws HttpRequestMethodNotSupportedException {
+//        OAuth2AccessToken oAuth2AccessToken = tokenEndpoint.postAccessToken(principal, parameters).getBody();
+//        Token oauth2TokenDto = Token.builder()
+//                .value(oAuth2AccessToken.getValue())
+//                .refreshToken(oAuth2AccessToken.getRefreshToken().getValue())
+//                .expiresIn(oAuth2AccessToken.getExpiresIn())
+//                .tokenHead("Bearer ").build();
+//
+//        return CommonResult.success(oauth2TokenDto);
+//    }
 }

@@ -35,7 +35,7 @@ spring:
              filters:
                 - StripPrefix=1
    redis:
-      database: 0  
+      database: 1  
       host: 127.0.0.1
       # 服务器连接端口
       port: 6379
@@ -52,6 +52,11 @@ spring:
          min-idle: 0  
       # 连接超时时间（毫秒）
       timeout: 30000
+   security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: 'http://localhost:8080/auth/rsa/publicKey' #配置RSA的公钥访问地址
 ## 日志配置
 logging:
   config: src/main/resources/logback.xml
@@ -65,8 +70,8 @@ service:
          - refresh_token
    ignore:
       resources: 
-         - /app/user
-         - /oauth/*
-         - /auth/user/login
+         - /api/sso/user/login
+         - /api/oauth/*
+         - /api/auth/user/login
          
   

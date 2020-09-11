@@ -1,6 +1,7 @@
 package com.mnuo.forpink.auth.config;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -90,6 +91,11 @@ public class AuthService {
 				resourceRolesMap.put(k, v.stream().map(RolePathVO::getRole).collect(Collectors.toList()));
 			});
 		}
+		Map<String, List<String>> map = new HashMap<>();
+		 redisTemplate.opsForHash().putAll("AUTH:RESOURCE_ROLES_MAP112", map);
+         List<String> list222 =  (List<String>)redisTemplate.opsForHash().get("AUTH:RESOURCE_ROLES_MAP112", "	/api/api");
+         log.info("aaa122-> " +  JSON.toJSONString(list222));
+       
         redisTemplate.opsForHash().putAll("AUTH:RESOURCE_ROLES_MAP", resourceRolesMap);
         List<String> list1 =  (List<String>)redisTemplate.opsForHash().get("AUTH:RESOURCE_ROLES_MAP", "/api/sso/user/list");
         log.info("aaa-> " +  JSON.toJSONString(list1));

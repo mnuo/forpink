@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import static springfox.documentation.builders.PathSelectors.regex;
+
 import com.github.xiaoymin.swaggerbootstrapui.annotations.EnableSwaggerBootstrapUI;
 
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -43,8 +43,8 @@ public class ForpinkSwaggerConfig implements WebMvcConfigurer{
         .pathMapping("/")
         .select()
         .apis(RequestHandlerSelectors.basePackage("com.mnuo.forpink"))
-//        .paths(PathSelectors.any())
-        .paths(regex("^.*(?<!error)$"))
+        .paths(PathSelectors.any())
+//        .paths(regex("^.*(?<!error)$"))
         .build().apiInfo(new ApiInfoBuilder()
                 .title("for pink tomorrow")
                 .description("for pink")

@@ -3,78 +3,82 @@ package com.mnuo.forpink.auth.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
-import com.mnuo.forpink.auth.service.ForpinkUserDetailService;
+import com.mnuo.forpink.core.respository.RoleInfoRespository;
+import com.mnuo.forpink.core.respository.UsersRespository;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * 〈security配置〉
- *  配置授权码/账号密码是验证输入的束缚正确
- *
- * @author
- * @create 2018/12/13
- * @since 1.0.0
+ * Security核心配置, 承担的角色是用户资源管理, 在客户端发送登录请求的时候, security会将先去根据用户输入的用户名和密码, 去查询数据库
+ * 	如果匹配, 将用户信息进行一层转换, 然后交给认证授权管理器, 认证授权管理器根据用户信息分发一个token给用户, 下次请求的时候携带这个token
+ * 认证管理器就可以根据这个token找到用户信息
+ * @author administrator
  */
 @Configuration
-@EnableWebSecurity //开取权限验证
-@Order(2)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private ForpinkUserDetailService userDetailService;
-    
-    /**
-     * 配置用户, 使用内存的用户, 实际项目中,一般使用的是数据库保存用户, 具体的实现类可以用jdbcdaoimpl或者jdbcUserDetailsManager
-     */
-    @Override
-    @Bean
-    protected UserDetailsService userDetailsService(){
-    	InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-    	manager.createUser(User.withUsername("admin").password(PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("admin")).authorities("USER").build());
-    	return manager;
-    }
+@Slf4j
+@EnableWebSecurity
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class SecurityConfig extends WebSecurityConfigurerAdapter{
+	
+	@Autowired
+	UsersRespository usersRespository;
+	@Autowired
+	RoleInfoRespository roleInfoRespository;
+	@Autowired
+	UserDetailsService userDetailsService;
+	
+//	@Autowired
+//	private RestTemplate restTemplate;
+	
+	@Bean
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
+	
+//	@Override
+//	protected UserDetailsService userDetailsService() {
+//		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+//		return new UserDetailsService() {
+//			
+//			@Override
+//			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//				log.info("username: {}", username);
+//				Users user = usersRespository.findByUserName(username);
+//				if(user != null){
+//					CustomUserDetail detail = new CustomUserDetail();
+//					detail.setUsername(username);
+//					detail.setPassword("{bcrypt}"+bCryptPasswordEncoder.encode(user.getPassWord()));
+//					
+//					List<RoleInfo> roles = roleInfoRespository.findRolesByUser(user.getId());
+//					if(!CollectionUtils.isEmpty(roles)){
+//						List<String> roleNames = roles.stream().map(RoleInfo::getCode).collect(Collectors.toList());
+//						String[] role = (String[]) roleNames.toArray();
+//						List<GrantedAuthority> list = AuthorityUtils.createAuthorityList(role);
+//						detail.setAuthorities(list);
+//					}
+//					return detail;
+//				}
+//				return null;
+//			}
+//		};
+//	}
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService)
+			.passwordEncoder(passwordEncoder());
+	}
+	@Bean
+	PasswordEncoder passwordEncoder(){
+		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+	}
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new ForpinkBCryptPasswordEncoder();
-//        return new NoEncryptPasswordEncoder();
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.requestMatchers().antMatchers("/oauth/**")
-                .and()
-                .authorizeRequests()
-                .antMatchers("/oauth/**").authenticated()
-                .and()
-                .csrf().disable();
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
-    	auth.userDetailsService(userDetailsService());
-    }
-
-    /**
-     * 不定义没有password grant_type,密码模式需要AuthenticationManager支持
-     * 配置这个bean会在做AuthorizationServerConfigurer配置的时候使用
-     * @return
-     * @throws Exception
-     */
-    @Override
-    @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
 }

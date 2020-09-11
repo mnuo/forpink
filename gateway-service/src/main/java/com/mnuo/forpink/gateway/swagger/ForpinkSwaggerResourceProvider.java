@@ -70,7 +70,6 @@ public class ForpinkSwaggerResourceProvider implements SwaggerResourcesProvider 
     private final GatewayProperties gatewayProperties;
 
 
-    @Override
     public List<SwaggerResource> get() {
         List<SwaggerResource> resources = new ArrayList<>();
         List<String> routes = new ArrayList<>();

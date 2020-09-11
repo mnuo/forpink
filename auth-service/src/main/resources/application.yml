@@ -61,12 +61,6 @@ logging:
   config: src/main/resources/logback.xml
   
 service:
-   client:
-      clientSecret: 123123
-      clientId: client_1
-      grantType:
-         - password
-         - refresh_token
    ignore:
       resources: 
          - /app/user

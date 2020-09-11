@@ -17,7 +17,7 @@ import springfox.documentation.swagger.web.SwaggerResourcesProvider;
  * 聚合各个服务的swagger接口
  */
 @Component
-public class ForpinkSwaggerResourceProvider implements SwaggerResourcesProvider {
+public class ForpinkSwaggerResourceProvider implements SwaggerResourcesProvider{
 
 	/**
      * swagger2默认的url后缀
@@ -37,7 +37,6 @@ public class ForpinkSwaggerResourceProvider implements SwaggerResourcesProvider 
 	this.routeLocator = routeLocator;
    }
     
-	@Override
 	public List<SwaggerResource> get() {
 		List<SwaggerResource> resources = new ArrayList<SwaggerResource>();
 		List<String> routeHosts= new ArrayList<>();
