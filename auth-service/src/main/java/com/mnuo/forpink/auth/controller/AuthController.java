@@ -26,9 +26,9 @@ public class AuthController {
     @Autowired
     private TokenEndpoint tokenEndpoint;
 
-    /**
-     * Oauth2登录认证
-     */
+//    /**
+//     * Oauth2登录认证
+//     */
 //    @RequestMapping(value = "/token", method = RequestMethod.POST)
 //    public CommonResult<Token> postAccessToken(Principal principal, @RequestParam Map<String, String> parameters) throws HttpRequestMethodNotSupportedException {
 //        OAuth2AccessToken oAuth2AccessToken = tokenEndpoint.postAccessToken(principal, parameters).getBody();

@@ -28,6 +28,7 @@ import com.mnuo.forpink.web.common.ResponseType;
 import com.mnuo.forpink.web.vo.Response;
 
 import lombok.extern.slf4j.Slf4j;
+import springfox.documentation.service.TokenEndpoint;
 
 @Service
 @Slf4j
@@ -69,7 +70,7 @@ public class UserServiceImpl implements UserService{
 		List<Users> users = usersRespository.findAll();
 		return users;
 	}
-
+	
 	@Override
 	public Response login(LoginUserDto loginUserDTO) {
 		MultiValueMap<String, Object> params = new LinkedMultiValueMap<String, Object>();
@@ -78,7 +79,6 @@ public class UserServiceImpl implements UserService{
 		params.add("username", loginUserDTO.getAccount());
 		params.add("password", loginUserDTO.getPassword());
 		params.add("grant_type", clientEncodeConfig.getGrantType()[0]);
-		
 		Token token = null;
         try {
             //因为oauth2本身自带的登录接口是"/oauth/token"，并且返回的数据类型不能按我们想要的去返回

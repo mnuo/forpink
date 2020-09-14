@@ -36,8 +36,8 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		if(user != null){
 			CustomUserDetail detail = new CustomUserDetail();
 			detail.setUsername(username);
-			detail.setPassword("{bcrypt}"+bCryptPasswordEncoder.encode(user.getPassWord()));
-			
+			detail.setPassword(bCryptPasswordEncoder.encode(user.getPassWord()));
+			//"{bcrypt}"+
 			List<RoleInfo> roles = roleInfoRespository.findRolesByUser(user.getId());
 			if(!CollectionUtils.isEmpty(roles)){
 				List<String> roleNames = roles.stream().map(RoleInfo::getCode).collect(Collectors.toList());
