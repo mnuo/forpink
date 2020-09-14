@@ -68,13 +68,8 @@ public class UserController {
 	@ApiOperation(value="注销")
     @GetMapping("/logout")
     public Response logout(@RequestHeader("Authorization") String authorization){
-//        redisTokenStore.removeAccessToken(AssertUtils.extracteToken(authorization));
-//        if (authorization != null) {
-//            String tokenValue = authorization.replace("Bearer ", "").trim();
-//            OAuth2AccessToken accessToken = redisTokenStore.readAccessToken(tokenValue);
-//            redisTokenStore.removeAccessToken(accessToken);
-//        }
-        return Response.success();
+		return userService.logout(authorization);
+//        return Response.success();
     }
     /**
      * @description 用户登录

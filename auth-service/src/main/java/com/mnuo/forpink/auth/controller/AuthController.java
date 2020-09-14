@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mnuo.forpink.auth.api.CommonResult;
 import com.mnuo.forpink.auth.domain.Token;
+import com.mnuo.forpink.web.vo.Response;
 
 /**
  * 自定义Oauth2获取令牌接口
@@ -33,13 +34,14 @@ public class AuthController {
     RedisTokenStore redisTokenStore;
     
     @GetMapping("/revokeToken1")
-    public void revokeToken(HttpServletRequest request) {
+    public Response revokeToken(HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");
         if (authHeader != null) {
             String tokenValue = authHeader.replace("Bearer ", "").trim();
             OAuth2AccessToken accessToken = redisTokenStore.readAccessToken(tokenValue);
             redisTokenStore.removeAccessToken(accessToken);
         }
+        return Response.success();
     }
     /**
      * Oauth2登录认证

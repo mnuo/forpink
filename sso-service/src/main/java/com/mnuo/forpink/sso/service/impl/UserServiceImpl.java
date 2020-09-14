@@ -5,6 +5,10 @@ import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -28,7 +32,6 @@ import com.mnuo.forpink.web.common.ResponseType;
 import com.mnuo.forpink.web.vo.Response;
 
 import lombok.extern.slf4j.Slf4j;
-import springfox.documentation.service.TokenEndpoint;
 
 @Service
 @Slf4j
@@ -124,7 +127,8 @@ public class UserServiceImpl implements UserService{
      * @author Zhifeng.Zeng
      * @return
      */
-    private Token oauthRefreshToken(String refreshToken) {
+	@Override
+    public Token oauthRefreshToken(String refreshToken) {
         MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
         params.add("client_id", clientEncodeConfig.getClientId());
 		params.add("client_secret", clientEncodeConfig.getClientSecret());
@@ -146,6 +150,29 @@ public class UserServiceImpl implements UserService{
         }
         return token;
     }
+
+	@Override
+	public Response logout(String authorization) {
+        try {
+        	HttpHeaders headers = new HttpHeaders();
+        	headers.add("token",authorization);
+        	HttpEntity<String> requestEntity = new HttpEntity<>(null, headers);
+        	ResponseEntity<Response> resEntity = restTemplate.exchange("http://localhost:8080/auth" + UrlConstant.LOGOUT_URL.getUrl(), HttpMethod.GET, requestEntity, Response.class);
+            return resEntity.getBody();
+            
+//            token = restTemplate.postForObject("http://localhost:8080/auth" + UrlConstant.LOGOUT_URL.getUrl(), params, Token.class);
+//            token = restTemplate.postForObject(serverConfig.getUrl() + "/" + serviceName + UrlConstant.LOGIN_URL.getUrl(), params, Token.class);
+        } catch (RestClientException e) {
+            try {
+            	log.error("oauthRefreshToken error: ", e);
+                //此处应该用自定义异常去返回，在这里我就不去具体实现了
+                throw new Exception(ResponseType.REFRESH_TOKEN_INVALID.getMessage());
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+		return null;
+	}
 
 
 

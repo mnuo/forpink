@@ -1,7 +1,9 @@
 package com.mnuo.forpink.core.common;
 
 public enum UrlConstant {
-	LOGIN_URL("/oauth/token"),;
+	LOGIN_URL("/oauth/token"),
+	LOGOUT_URL("/oauth1/revokeToken1"),
+	;
 	private String url;
 
 	UrlConstant(String url) {
