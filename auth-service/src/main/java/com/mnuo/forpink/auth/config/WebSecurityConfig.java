@@ -28,6 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/webjars/**").permitAll()
 				.antMatchers("/v2/**").permitAll()
 				.antMatchers("/api/**").permitAll()
+//				.antMatchers("/auth/**").permitAll()
 				//Option请求不需要鉴权
 				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()

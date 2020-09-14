@@ -71,7 +71,7 @@ service:
    ignore:
       resources: 
          - /api/sso/user/login
-         - /api/oauth/*
+         - /api/auth/oauth/**
          - /api/auth/user/login
          
   

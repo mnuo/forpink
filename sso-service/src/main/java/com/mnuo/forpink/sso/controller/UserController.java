@@ -34,7 +34,6 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
-	
 	@ApiOperation(value="新增")
     @PostMapping("/save")
     public Response save(@RequestBody Users user){
@@ -70,6 +69,11 @@ public class UserController {
     @GetMapping("/logout")
     public Response logout(@RequestHeader("Authorization") String authorization){
 //        redisTokenStore.removeAccessToken(AssertUtils.extracteToken(authorization));
+//        if (authorization != null) {
+//            String tokenValue = authorization.replace("Bearer ", "").trim();
+//            OAuth2AccessToken accessToken = redisTokenStore.readAccessToken(tokenValue);
+//            redisTokenStore.removeAccessToken(accessToken);
+//        }
         return Response.success();
     }
     /**
