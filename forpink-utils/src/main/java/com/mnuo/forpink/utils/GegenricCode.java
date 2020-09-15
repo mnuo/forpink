@@ -5,8 +5,8 @@ import com.mnuo.forpink.utils.entity.TableToEntityMysql;
 public class GegenricCode {
 	public static void main(String[] args) {
 		String[] tableArr = { 
-				"base_road_zone",
-				"base_cut_map_info"
+//				"account",
+				"fp_storage"
 		};
 		TableToEntityMysql.exportBeansBatch(tableArr);
 	}

@@ -25,7 +25,7 @@
     git clone --bare https://github.com/user/repo.git
     cd repo.git
     ./test.sh 
-    git push --force --tags origin 'refs/heads/*
+    git push --force --tags origin refs/heads/*
 
 
 
