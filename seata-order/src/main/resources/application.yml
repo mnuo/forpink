@@ -45,6 +45,10 @@ spring:
          ddl-auto: update
    jackson:
        time-zone: GMT+8
+   cloud:
+      alibaba:
+         seata:
+           tx-service-group: forpink_tx_groupp
    redis:
       open: true # 是否开启redis缓存  true开启   false关闭
       database: 1
@@ -71,7 +75,7 @@ seata:
   service:
   #这里的名字与file.conf中vgroup_mapping.my_test_tx_group = "default"相同
     vgroup-mapping:
-      forpink_tx_group: default
+      forpink_tx_group: forpink_tx_group
       #这里的名字与file.conf中default.grouplist = "127.0.0.1:8091"相同
     grouplist:
       default: 127.0.0.1:8091
@@ -81,9 +85,10 @@ seata:
     nacos:
       namespace:
       #这里的地址就是你的nacos的地址,可以更换为线上
-      serverAddr: 127.0.0.1:8848
+      serverAddr: 10.0.64.5:8848
       #这里的名字就是registry.conf中 nacos的group名字
       group: SEATA_GROUP
+      max-retry: 20
       userName: "nacos"
       password: "nacos"
   registry:
@@ -91,9 +96,10 @@ seata:
     nacos:
       application: seata-server
       #这里的地址就是你的nacos的地址,可以更换为线上
-      server-addr: 127.0.0.1:8848
+      server_addr: 10.0.64.5:8848
       #这里的名字就是registry.conf中 nacos的group名字
       group: SEATA_GROUP
+      max-retry: 20
       namespace:
       userName: "nacos"
       password: "nacos"
