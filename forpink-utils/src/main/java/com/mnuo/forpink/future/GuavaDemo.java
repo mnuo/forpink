@@ -4,11 +4,12 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.google.common.util.concurrent.FutureCallback;
-import com.google.common.util.concurrent.Futures;
-import com.google.common.util.concurrent.ListenableFuture;
-import com.google.common.util.concurrent.ListeningExecutorService;
-import com.google.common.util.concurrent.MoreExecutors;
+import org.apache.curator.shaded.com.google.common.util.concurrent.FutureCallback;
+import org.apache.curator.shaded.com.google.common.util.concurrent.Futures;
+import org.apache.curator.shaded.com.google.common.util.concurrent.ListenableFuture;
+import org.apache.curator.shaded.com.google.common.util.concurrent.ListeningExecutorService;
+import org.apache.curator.shaded.com.google.common.util.concurrent.MoreExecutors;
+
 
 public class GuavaDemo {
 	static final int Sleep_time = 1000;
@@ -103,6 +104,7 @@ public class GuavaDemo {
 		ListeningExecutorService gpool = MoreExecutors.listeningDecorator(jpool);
 		//提交Hotwater实例
 		ListenableFuture<Boolean> hotfuture = gpool.submit(hw);
+		
 		//绑定异步回调, 烧水完成后, 把喝水任务的waterok设置为TRUE
 		Futures.addCallback(hotfuture, new FutureCallback<Boolean>() {
 			@Override
