@@ -206,6 +206,7 @@
 	    <!-- <module>seata-order</module>
 	    <module>seata-acount</module>
        <module>seata-storage</module> -->
+    <module>forpink-learning</module>
   </modules>
 	 <!-- 指定本地mip包仓库 -->
     <repositories>
