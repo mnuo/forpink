@@ -23,23 +23,23 @@ import com.mnuo.forpink.utils.utils.Snowflake;
 public class TableToEntityMysql {
 
     /** 数据库连接URL*/ 
-    private final static String DB_URL = "jdbc:mysql://localhost:3306/seata-storage?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8";
-//    private final static String DB_URL = "jdbc:mysql://192.168.68.204:3306/fell?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&autoReconnect=true&failOverReadOnly=false&useSSL=false";
+//    private final static String DB_URL = "jdbc:mysql://localhost:3306/seata-storage?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8";
+    private final static String DB_URL = "jdbc:mysql://192.168.68.204:3306/fell?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&autoReconnect=true&failOverReadOnly=false&useSSL=false";
 
     /** 数据库连接驱动*/ 
-    private final static String DB_DRIVER = "com.mysql.cj.jdbc.Driver"; 
-//    private final static String DB_DRIVER = "com.mysql.jdbc.Driver"; 
+//    private final static String DB_DRIVER = "com.mysql.cj.jdbc.Driver"; 
+    private final static String DB_DRIVER = "com.mysql.jdbc.Driver"; 
 
     /** 数据库用户名*/ 
-    private final static String DB_USERNAME = "root";
-//    private final static String DB_USERNAME = "sit";
+//    private final static String DB_USERNAME = "root";
+    private final static String DB_USERNAME = "sit";
 
     /** 数据库密码*/ 
-    private final static String DB_PASSWORD = "root123";
-//    private final static String DB_PASSWORD = "abc-123";
+//    private final static String DB_PASSWORD = "root123";
+    private final static String DB_PASSWORD = "abc-123";
 
     /** 生成java实体类存放目录*/
-    private final static String FILEDIR = "D:\\aaaaaaa-20200829-3";
+    private final static String FILEDIR = "D:\\bbb-20200829-3";
 
 
     /**
@@ -50,10 +50,10 @@ public class TableToEntityMysql {
     /**要生成bean的表名**/
     public static String table_name="users";
     /**生成的bean类package值**/
-//    public static String java_package_path="com.hwagain.fell.base.entity";
-//    public static String java_package_path_respository="com.hwagain.fell.base.respository";
-    public static String java_package_path="com.mnuo.forpink.storage.entity";
-    public static String java_package_path_respository="com.mnuo.forpink.storage.respository";
+    public static String java_package_path="com.hwagain.fell.base.entity";
+    public static String java_package_path_respository="com.hwagain.fell.base.respository";
+//    public static String java_package_path="com.mnuo.forpink.storage.entity";
+//    public static String java_package_path_respository="com.mnuo.forpink.storage.respository";
 
 
 

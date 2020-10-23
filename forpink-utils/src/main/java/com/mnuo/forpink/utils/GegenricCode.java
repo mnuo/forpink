@@ -6,7 +6,7 @@ public class GegenricCode {
 	public static void main(String[] args) {
 		String[] tableArr = { 
 //				"account",
-				"fp_storage"
+				"cp_wood_heap"
 		};
 		TableToEntityMysql.exportBeansBatch(tableArr);
 	}

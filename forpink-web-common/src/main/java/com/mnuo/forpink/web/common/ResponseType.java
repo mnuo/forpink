@@ -25,7 +25,6 @@ public enum ResponseType {
     UNAUTHORIZED(1004,"访问此资源需要完全的身份验证"),
     ERROR(500,"内部错误"),
 
-
     /**
      * 5000 表示用户提示信息
      */

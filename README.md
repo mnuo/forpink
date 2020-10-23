@@ -9,7 +9,8 @@
     |-- gateway-service   网关服务
     |-- sso-service       登录
     |-- forpink-seckill   分布式锁(秒杀)
-    |-- test.sh           github恢复丢失的绿格子    
+    |-- test.sh           github恢复丢失的绿格子   
+    |-- forpink-learning  
     
 ##### 权限服务(security+oauth2+jwt)
 
@@ -18,7 +19,7 @@
     + 2、简化模式：第三方单页面应用
     + 3、密码模式：第一方单页应用与第一方原生App
     + 4、客户端模式：没有用户参与的，完全信任的服务器端服务
-</font>
+
 
 #####  github恢复丢失的绿格子
     vi test.sh 修改对应的

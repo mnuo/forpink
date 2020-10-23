@@ -29,6 +29,8 @@ public class JvmTest {
 			};
 			executor.execute(task);
 		}
+
+		executor.shutdown();
 	}
 }
 class ThreadNotSafe{
