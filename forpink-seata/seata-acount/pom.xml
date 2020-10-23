@@ -8,9 +8,9 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <groupId>com.mnuo</groupId>
-  <artifactId>sso-service</artifactId>
+  <artifactId>seata-acount</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>sso-service</name>
+  <name>seata-acount</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

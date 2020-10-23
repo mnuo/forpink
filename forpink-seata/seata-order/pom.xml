@@ -4,13 +4,13 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.mnuo</groupId>
-    <artifactId>forpink-seata</artifactId>
+	  <artifactId>forpink-seata</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <groupId>com.mnuo</groupId>
-  <artifactId>sso-service</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>sso-service</name>
+  <artifactId>seata-order</artifactId>
+  <version>com.mnuo-SNAPSHOT</version>
+  <name>seata-order</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
