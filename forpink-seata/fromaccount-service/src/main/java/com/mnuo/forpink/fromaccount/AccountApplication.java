@@ -1,4 +1,4 @@
-package com.mnuo.order;
+package com.mnuo.forpink.fromaccount;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -11,10 +11,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableFeignClients
 @EnableDiscoveryClient
-@MapperScan({"com.mnuo.forpink.seata.order.mapper"})
-public class OrderApplication {
+@MapperScan({"com.mnuo.forpink.seata.account.mapper"})
+public class AccountApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(OrderApplication.class, args);
+		SpringApplication.run(AccountApplication.class, args);
 		System.err.println("启动成功!");
 	}
 }
