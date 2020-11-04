@@ -5,8 +5,8 @@ import com.mnuo.forpink.utils.entity.TableToEntityMysql;
 public class GegenricCode {
 	public static void main(String[] args) {
 		String[] tableArr = { 
-//				"account",
-				"cp_wood_heap"
+				"inout_exception_report_review",
+				"inout_exception_report_name_list"
 		};
 		TableToEntityMysql.exportBeansBatch(tableArr);
 	}
