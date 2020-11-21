@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -17,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -28,14 +30,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/webjars/**").permitAll()
 				.antMatchers("/v2/**").permitAll()
 				.antMatchers("/api/**").permitAll()
-//				.antMatchers("/auth/**").permitAll()
+				.antMatchers("/auth/**").permitAll()
 				//Option请求不需要鉴权
+				.antMatchers("/oauth/**").permitAll()
 				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
                 .antMatchers("/rsa/publicKey").permitAll()
-                .anyRequest().authenticated();
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .and()
+                .httpBasic();
+//    	  http.authorizeRequests().antMatchers("/**")
+//          .fullyAuthenticated().and().formLogin();
     }
-
+    
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {

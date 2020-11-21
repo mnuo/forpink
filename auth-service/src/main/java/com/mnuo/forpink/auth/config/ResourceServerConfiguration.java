@@ -17,8 +17,8 @@ import com.mnuo.forpink.auth.handler.CustomAuthExceptionHandler;
  * 资源服务器
  * @author administrator
  */
-@Configuration
-@EnableResourceServer
+//@Configuration
+//@EnableResourceServer
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter{
 	public static final String ROLE_ADMIN = "ADMIN";
 	
@@ -54,6 +54,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 			//用户的增删改查接口只允许管理员访问
 			//获取角色 权限列表接口只允许系统管理员访问
 			.antMatchers(HttpMethod.GET, "/auth/role").hasAnyAuthority(ROLE_ADMIN)
+			.antMatchers("/oauth/**").permitAll()
 			// 其余接口没有角色权限, 但需要经过认证, 只要携带token就可以放行
 			.anyRequest()
 			.authenticated();

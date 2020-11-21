@@ -2,11 +2,11 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
+  <!-- <parent>
     <groupId>com.mnuo</groupId>
     <artifactId>forpink</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-  </parent>
+  </parent> -->
   <groupId>com.mnuo</groupId>
   <artifactId>forpink-account</artifactId>
   <version>0.0.1-SNAPSHOT</version>
@@ -14,17 +14,38 @@
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <java.version>1.8</java.version>
   </properties>
+  <dependencyManagement>
+       <dependencies>
+		<!--支持Spring Boot 2.1.X+ -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-dependencies</artifactId>
+			<version>2.3.0.RELEASE</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+	</dependencies>
+  </dependencyManagement>
   <dependencies>
+    <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+            <scope>compile</scope>
+        </dependency>
     <dependency>
 	    <groupId>org.springframework.boot</groupId>
 	    <artifactId>spring-boot-starter-web</artifactId>
 	</dependency>
-	<dependency>
+	<!-- <dependency>
         <groupId>com.mnuo</groupId>
         <artifactId>forpink-payment</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-    </dependency>
+    </dependency> -->
   </dependencies>
   <build>
         <plugins>

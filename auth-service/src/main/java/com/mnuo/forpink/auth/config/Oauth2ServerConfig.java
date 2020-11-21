@@ -11,6 +11,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -47,6 +48,12 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
+				.withClient("client1")
+				.authorizedGrantTypes("authorization_code", "refresh_token") //授权方式: 授权码模式
+				.scopes("all")//授权范围
+				.secret(passwordEncoder.encode("123456"))
+				.redirectUris("https://www.baidu.com")
+				.and()
                 .withClient("client_1")
                 .secret(passwordEncoder.encode("123456"))
                 .scopes("all")

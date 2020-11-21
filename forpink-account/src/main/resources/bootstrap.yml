@@ -1,9 +1,0 @@
-spring:
-   application:
-      name: account-server
-   cloud:
-      nacos:
-         config:
-            server-addr: 10.0.64.5:8848
-         discovery:
-            server-addr: 10.0.64.5:8848
