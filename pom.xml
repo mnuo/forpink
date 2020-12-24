@@ -1,250 +1,230 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.mnuo</groupId>
-  <artifactId>forpink</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
+	<groupId>com.mnuo</groupId>
+	<artifactId>forpink</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
-  <name>forpink</name>
-  <url>http://maven.apache.org</url>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <java.version>1.8</java.version>
-    <spring.boot.dependencies.version>2.3.0.RELEASE</spring.boot.dependencies.version>
-    <spring.cloud.version>Hoxton.SR5</spring.cloud.version>
-    <spring.cloud.alibaba.version>2.2.0.RELEASE</spring.cloud.alibaba.version>
-    <springfox.swagger2.version>2.9.2</springfox.swagger2.version>
-    <swagger.bootstrap.ui.version>1.9.4</swagger.bootstrap.ui.version>
-    <springfox.swagger.ui.version>2.9.2</springfox.swagger.ui.version>
-    <knife4j.spring.boot.starter.version>2.0.4</knife4j.spring.boot.starter.version>
-    <nacos.client.version>1.2.0</nacos.client.version>
-    <httpclient.version>4.5.12</httpclient.version>
-    <httpcore.version>4.4.13</httpcore.version>
-    <lombok.version>1.18.10</lombok.version>
-    <spring.cloud.starter.netflix.ribbon.version>2.2.3.RELEASE</spring.cloud.starter.netflix.ribbon.version>
-    <spring.cloud.starter.openfeign.version>2.2.3.RELEASE</spring.cloud.starter.openfeign.version>
-    <!--      <spring.boot.dependencies.version>2.1.7.RELEASE</spring.boot.dependencies.version>-->
-    <!--      <spring.cloud.version>Greenwich.RELEASE</spring.cloud.version>-->
-    <!--      <spring.cloud.alibaba.version>2.1.0.RELEASE</spring.cloud.alibaba.version>-->
-   </properties>
-    <dependencyManagement>
-        <dependencies>
-            <!--支持Spring Boot 2.1.X+-->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring.boot.dependencies.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring.cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring.cloud.alibaba.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.alibaba.nacos</groupId>
-                        <artifactId>nacos-client</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <!--jetcache缓存 -->
-            <!-- <dependency>
-                <groupId>com.alicp.jetcache</groupId>
-                <artifactId>jetcache-starter-redis</artifactId>
-                <version>2.5.14</version>
-            </dependency> -->
-        </dependencies>
-    </dependencyManagement>
+	<name>forpink</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<java.version>1.8</java.version>
+		<spring.boot.dependencies.version>2.3.0.RELEASE</spring.boot.dependencies.version>
+		<spring.cloud.version>Hoxton.SR5</spring.cloud.version>
+		<spring.cloud.alibaba.version>2.2.0.RELEASE</spring.cloud.alibaba.version>
+		<springfox.swagger2.version>2.9.2</springfox.swagger2.version>
+		<swagger.bootstrap.ui.version>1.9.4</swagger.bootstrap.ui.version>
+		<springfox.swagger.ui.version>2.9.2</springfox.swagger.ui.version>
+		<knife4j.spring.boot.starter.version>2.0.4</knife4j.spring.boot.starter.version>
+		<nacos.client.version>1.2.0</nacos.client.version>
+		<httpclient.version>4.5.12</httpclient.version>
+		<httpcore.version>4.4.13</httpcore.version>
+		<lombok.version>1.18.10</lombok.version>
+		<spring.cloud.starter.netflix.ribbon.version>2.2.3.RELEASE</spring.cloud.starter.netflix.ribbon.version>
+		<spring.cloud.starter.openfeign.version>2.2.3.RELEASE</spring.cloud.starter.openfeign.version>
+		<!-- <spring.boot.dependencies.version>2.1.7.RELEASE</spring.boot.dependencies.version> -->
+		<!-- <spring.cloud.version>Greenwich.RELEASE</spring.cloud.version> -->
+		<!-- <spring.cloud.alibaba.version>2.1.0.RELEASE</spring.cloud.alibaba.version> -->
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<!--支持Spring Boot 2.1.X+ -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring.boot.dependencies.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring.cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba.cloud</groupId>
+				<artifactId>spring-cloud-alibaba-dependencies</artifactId>
+				<version>${spring.cloud.alibaba.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>com.alibaba.nacos</groupId>
+						<artifactId>nacos-client</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<!--jetcache缓存 -->
+			<!-- <dependency> <groupId>com.alicp.jetcache</groupId> <artifactId>jetcache-starter-redis</artifactId> 
+				<version>2.5.14</version> </dependency> -->
+		</dependencies>
+	</dependencyManagement>
 
-    <dependencies>
-        <!--自省和监控的集成功能-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <!--注册中心-->
-       <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-alibaba-nacos-discovery</artifactId>
-        </dependency>
-        <!--  配置中心 -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-alibaba-nacos-config</artifactId>
-        </dependency>
-        <!-- ribbon 负载均衡, 在sentinel中已经存在不需要额外添加-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-            <version>${spring.cloud.starter.netflix.ribbon.version}</version>
-        </dependency>
-        <!-- feigh -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-            <version>${spring.cloud.starter.openfeign.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.nacos</groupId>
-            <artifactId>nacos-client</artifactId>
-            <version>${nacos.client.version}</version>
-        </dependency>
-      <!--   熔断降级 -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-        </dependency>
-        <!-- <dependency>
-            <groupId>com.alibaba.boot</groupId>
-            <artifactId>nacos-config-spring-boot-actuator</artifactId>
-            <version>0.2.3</version>
-        </dependency> -->
- <!--        日志跟踪
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zipkin</artifactId>
-        </dependency>
-        消息总线
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
-        </dependency> -->
-        <!--热加载-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
-        <!--使用 lombok 简化 Java 代码-->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <!--Swagger2 - RESTful API文档-->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${springfox.swagger2.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${springfox.swagger.ui.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>swagger-bootstrap-ui</artifactId>
-            <version>${swagger.bootstrap.ui.version}</version>
-        </dependency>
-        <!--整合Knife4j-->
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-spring-boot-starter</artifactId>
-            <version>${knife4j.spring.boot.starter.version}</version>
-        </dependency>
-        <!-- IDEA 编译不通过添加 -->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>${httpclient.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpcore</artifactId>
-            <version>${httpcore.version}</version>
-        </dependency>
-        <!--测试框架-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!--test数据库-->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+	<dependencies>
+		<!--自省和监控的集成功能 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<!--注册中心 -->
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-alibaba-nacos-discovery</artifactId>
+		</dependency>
+		<!-- 配置中心 -->
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-alibaba-nacos-config</artifactId>
+		</dependency>
+		<!-- ribbon 负载均衡, 在sentinel中已经存在不需要额外添加 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+			<version>${spring.cloud.starter.netflix.ribbon.version}</version>
+		</dependency>
+		<!-- feigh -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+			<version>${spring.cloud.starter.openfeign.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba.nacos</groupId>
+			<artifactId>nacos-client</artifactId>
+			<version>${nacos.client.version}</version>
+		</dependency>
+		<!-- 熔断降级 -->
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+		</dependency>
+		<!-- <dependency> <groupId>com.alibaba.boot</groupId> <artifactId>nacos-config-spring-boot-actuator</artifactId> 
+			<version>0.2.3</version> </dependency> -->
+		<!-- 日志跟踪 <dependency> <groupId>org.springframework.cloud</groupId> <artifactId>spring-cloud-starter-zipkin</artifactId> 
+			</dependency> 消息总线 <dependency> <groupId>org.springframework.cloud</groupId> 
+			<artifactId>spring-cloud-starter-bus-amqp</artifactId> </dependency> -->
+		<!--热加载 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<!--使用 lombok 简化 Java 代码 -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<!--Swagger2 - RESTful API文档 -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox.swagger2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox.swagger.ui.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.xiaoymin</groupId>
+			<artifactId>swagger-bootstrap-ui</artifactId>
+			<version>${swagger.bootstrap.ui.version}</version>
+		</dependency>
+		<!--整合Knife4j -->
+		<dependency>
+			<groupId>com.github.xiaoymin</groupId>
+			<artifactId>knife4j-spring-boot-starter</artifactId>
+			<version>${knife4j.spring.boot.starter.version}</version>
+		</dependency>
+		<!-- IDEA 编译不通过添加 -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpclient.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>${httpcore.version}</version>
+		</dependency>
+		<!--测试框架 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!--test数据库 -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.1.7.RELEASE</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>build-info</goal>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.1.7.RELEASE</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>build-info</goal>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	<modules>
-	   <!-- <module>forpink-seckill</module>
-	   <module>forpink-account</module>
-	    <module>forpink-payment</module>
-	    <module>forpink-gateway</module>
-	    <module>forpink-framework</module>
-	    <module>forpink-utils</module>
-	    <module>forpink-auth</module>
-	    <module>forpink-auth-server</module>
-	    <module>forpink-job</module>
-	    <module>forpink-auth-service</module> -->
-	    <module>forpink-core</module>
-	    <module>forpink-web-common</module>
-<!--	   <module>gateway-service</module>-->
-	    <!--  <module>sso-service</module> -->
-	    <!-- <module>seata-order</module>
-	    <module>seata-acount</module>
-       <module>seata-storage</module> -->
-<!--        <module>forpink-learning</module>-->
-<!--        <module>forpink-seata</module>-->
-    </modules>
-	 <!-- 指定本地mip包仓库 -->
-    <repositories>
-        <repository>
-            <id>nexus-aliyun</id>
-            <name>nexus-aliyun</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+		<!-- <module>forpink-seckill</module> <module>forpink-account</module> 
+			<module>forpink-payment</module> <module>forpink-gateway</module> <module>forpink-framework</module> 
+			<module>forpink-utils</module> <module>forpink-auth</module> <module>forpink-auth-server</module> 
+			<module>forpink-job</module> <module>forpink-auth-service</module> -->
+		<module>forpink-core</module>
+		<module>forpink-web-common</module>
+		<!-- <module>gateway-service</module> -->
+		<!-- <module>sso-service</module> -->
+		<!-- <module>seata-order</module> <module>seata-acount</module> <module>seata-storage</module> -->
+		<!-- <module>forpink-learning</module> -->
+		<!-- <module>forpink-seata</module> -->
+	</modules>
+	<!-- 指定本地mip包仓库 -->
+	<repositories>
+		<repository>
+			<id>nexus-aliyun</id>
+			<name>nexus-aliyun</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 </project>
