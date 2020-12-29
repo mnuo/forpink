@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.mnuo</groupId>
@@ -50,7 +49,7 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			<dependency>
+			<!-- <dependency>
 				<groupId>com.alibaba.cloud</groupId>
 				<artifactId>spring-cloud-alibaba-dependencies</artifactId>
 				<version>${spring.cloud.alibaba.version}</version>
@@ -62,7 +61,7 @@
 						<artifactId>nacos-client</artifactId>
 					</exclusion>
 				</exclusions>
-			</dependency>
+			</dependency> -->
 			<!--jetcache缓存 -->
 			<!-- <dependency> <groupId>com.alicp.jetcache</groupId> <artifactId>jetcache-starter-redis</artifactId> 
 				<version>2.5.14</version> </dependency> -->
@@ -71,20 +70,20 @@
 
 	<dependencies>
 		<!--自省和监控的集成功能 -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
+		</dependency> -->
 		<!--注册中心 -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.alibaba.cloud</groupId>
 			<artifactId>spring-cloud-alibaba-nacos-discovery</artifactId>
 		</dependency>
-		<!-- 配置中心 -->
+		配置中心
 		<dependency>
 			<groupId>com.alibaba.cloud</groupId>
 			<artifactId>spring-cloud-alibaba-nacos-config</artifactId>
-		</dependency>
+		</dependency> -->
 		<!-- ribbon 负载均衡, 在sentinel中已经存在不需要额外添加 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -97,16 +96,16 @@
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 			<version>${spring.cloud.starter.openfeign.version}</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.alibaba.nacos</groupId>
 			<artifactId>nacos-client</artifactId>
 			<version>${nacos.client.version}</version>
-		</dependency>
+		</dependency> -->
 		<!-- 熔断降级 -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.alibaba.cloud</groupId>
 			<artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-		</dependency>
+		</dependency> -->
 		<!-- <dependency> <groupId>com.alibaba.boot</groupId> <artifactId>nacos-config-spring-boot-actuator</artifactId> 
 			<version>0.2.3</version> </dependency> -->
 		<!-- 日志跟踪 <dependency> <groupId>org.springframework.cloud</groupId> <artifactId>spring-cloud-starter-zipkin</artifactId> 
@@ -212,7 +211,8 @@
 		<!-- <module>seata-order</module> <module>seata-acount</module> <module>seata-storage</module> -->
 		<!-- <module>forpink-learning</module> -->
 		<!-- <module>forpink-seata</module> -->
-	</modules>
+
+  </modules>
 	<!-- 指定本地mip包仓库 -->
 	<repositories>
 		<repository>
