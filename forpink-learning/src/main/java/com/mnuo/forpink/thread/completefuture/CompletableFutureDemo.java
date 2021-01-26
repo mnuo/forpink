@@ -21,23 +21,35 @@ public class CompletableFutureDemo {
 		final List<Integer> taskList = Lists.newArrayList(2,1,3,4,5,6,7,8,9,10);
 		ExecutorService service = Executors.newFixedThreadPool(10);
 		try {
-			for (int i = 0; i < 10; i++) {
-				final int j = i;
-				//异步执行
-				CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> calc(taskList.get(j)), service)
-						.thenApply(e -> Integer.toString(e))//Integer转换字符串    thenAccept只接受不返回不影响结果
-						.whenComplete((v, e)->{//如需获取任务完成先后顺序，此处代码即可
-							 System.out.println("任务"+v+"完成!result="+v+"，异常 e="+e+","+new Date());
-							 list2.add(v);
-						});
-				futures.add(future);
-			}
-		//流式获取结果：此处是根据任务添加顺序获取的结果
-		list = sequence(futures).get();
+//			方式一：循环创建CompletableFuture list,调用sequence()组装返回一个有返回值的CompletableFuture，返回结果get()获取
+//			for (int i = 0; i < 10; i++) {
+//				final int j = i;
+//				//异步执行
+//				CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> calc(taskList.get(j)), service)
+//						.thenApply(e -> Integer.toString(e))//Integer转换字符串    thenAccept只接受不返回不影响结果
+//						.whenComplete((v, e)->{//如需获取任务完成先后顺序，此处代码即可
+//							 System.out.println("任务"+v+"完成!result="+v+"，异常 e="+e+","+new Date());
+//							 list2.add(v);
+//						});
+//				futures.add(future);
+//			}
+//			//流式获取结果：此处是根据任务添加顺序获取的结果
+//			list = sequence(futures).get();
+			
+//			方式二: 全流式处理转换成CompletableFuture[] + 组装成一个无返回值CompletableFuture,
+//			join等待执行完毕.返回结果whenComplete获取
+			CompletableFuture[] cfs = taskList.stream().map(obj -> CompletableFuture.supplyAsync(() -> calc(obj), service).thenApply(h -> Integer.toString(h))
+					//如需获取任务完成先后顺序此处代码即可
+					.whenComplete((v, e) -> {
+						System.out.println("任务" + v + "完成!result=" + v + ", 异常 e = " + e + ", " + new Date());
+						list2.add(v);
+					})).toArray(CompletableFuture[]::new);
+			
+			//等待总任务完成, 但是封装后无返回值, 必须自己whenComplete()获取
+			CompletableFuture.allOf(cfs).join();
 		
-		
-		System.out.println("list=" + list2);
-		System.out.println("总耗时: " + (System.currentTimeMillis() - start));
+			System.out.println("list=" + list2);
+			System.out.println("总耗时: " + (System.currentTimeMillis() - start));
 	
 		} catch (Exception e) {
 		} finally {
